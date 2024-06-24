@@ -1,4 +1,4 @@
-# PerCDL (Demo)
+# _Redacted_ (Demo)
 
 Requires [JAX](https://jax.readthedocs.io/en/latest/installation.html).
 
