@@ -44,10 +44,10 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=str, required=True)
-    parser.add_argument("-L", type=int, required=True)
-    parser.add_argument("-D", type=int, required=True)
-    parser.add_argument("-W", type=int, required=True)
-    parser.add_argument("-i_s", type=int, required=False, default=0)
+    parser.add_argument("--L", type=int, required=True)
+    parser.add_argument("--D", type=int, required=True)
+    parser.add_argument("--W", type=int, required=True)
+    parser.add_argument("--i_s", type=int, required=False, default=0)
 
     args = parser.parse_args()
     main(args.input, args.L, args.D, args.W, args.i_s)

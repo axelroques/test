@@ -9,5 +9,5 @@ The gait dataset can be downloaded [here](https://github.com/deepcharles/gait-da
 _Manual setup_:
 
 ```
-python main.py --input "datasets/pairs.csv" -L 150 -D 4 -W 15 -i_s 100
+python main.py --input "datasets/pairs.csv" -L 150 -D 5 -W 15 -i_s 130
 ```

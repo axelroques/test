@@ -258,4 +258,7 @@ class PerCDL:
         for ax in axes_signals:
             ax.set_xlim((-1, self.N-1.2*self.L))
 
+        plt.tight_layout()
         plt.show()
+        plt.savefig(f'results.png', pad_inches=0, dpi=150)
+        plt.close()
