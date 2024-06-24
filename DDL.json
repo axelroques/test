@@ -1,63 +1,93 @@
 {
-    "general": {
-        "demo_title": "Python Demo Template",
-        "requirements": "docker"
+  "general": {
+    "demo_title": "CDL test",
+    "description": "<p>Python implementation of a CDL personalization method.</p><p>This algorithm is applied to ECG data.</p>",
+    "requirements": "docker"
+  },
+  "build": {
+    "url": "https://github.com/axelroques/test.git",
+    "rev": "origin/main",
+    "dockerfile": ".ipol/Dockerfile"
+  },
+  "inputs": [
+    {
+      "description": "<p>One or multiple time series in a .csv format.</p><p>The first row should be headers for all columns. All columns are expected to be 'data columns', e.g., no timestamp information should be present.</p>",
+      "ext": ".csv",
+      "type": "data",
+      "max_weight": "10*1024*1024"
+    }
+  ],
+  "params": [
+    {
+      "id": "L",
+      "label": "L",
+      "comments": "Atom length.",
+      "type": "range",
+      "values": {
+        "default": "130",
+        "max": 200,
+        "min": 50,
+        "step": 10
+      }
     },
-    "build": {
-        "url": "git@github.com:mlbriefs/template-python.git",
-        "rev": "origin/main",
-        "dockerfile": ".ipol/Dockerfile"
+    {
+      "id": "D",
+      "label": "D",
+      "comments": "Depth of the transformation function.",
+      "type": "range",
+      "values": {
+        "default": "5",
+        "max": 10,
+        "min": 2,
+        "step": 1
+      }
     },
-    "inputs": [
-        {
-            "description": "input",
-            "max_pixels": "3000*3000",
-            "dtype": "x8i",
-            "ext": ".png",
-            "type": "image"
-        }
-    ],
-    "params": [
-        {
-            "id": "sigma",
-            "label": "sigma",
-            "comments": "Noise standard deviation",
-            "type": "range",
-            "values": {
-                "default": "30",
-                "max": 300,
-                "min": 0,
-                "step": 0.1
-            }
-        }
-    ],
-    "results": [
-        {
-            "type": "gallery",
-            "contents": {
-                "Input": {
-                    "img": "input_0.png"
-                },
-                "Output": {
-                    "img": "output.png"
-                }
-            }
-        },
-        {
-            "contents": "stdout.txt",
-            "label": "<p>Output</p>",
-            "type": "text_file"
-        }
-    ],
-    "archive": {
-        "enable_reconstruct": true,
-        "files": {
-            "input_0.png": "Input",
-            "output.png": "Output"
-        },
-        "info": {
-            "run_time": "run time"
-        }
+    {
+      "id": "W",
+      "label": "W",
+      "comments": "Width of the transformation function.",
+      "type": "range",
+      "values": {
+        "default": "15",
+        "max": 30,
+        "min": 2,
+        "step": 1
+      }
     },
-    "run": "python $bin/main.py --input $input_0 --sigma $sigma --output output.png"
+    {
+      "id": "i_s",
+      "label": "i_s",
+      "comments": "Start index of the pattern that will be used to initialize the common dictionary. The dictionary will be initialized with the segment [i_s:i_s+L] from the first time series in the input.",
+      "type": "range",
+      "values": {
+        "default": "130",
+        "max": 500,
+        "min": 0,
+        "step": 5
+      }
+    }
+  ],
+  "results": [
+    {
+      "type": "gallery",
+      "label": "<h2>Reconstruction</h2>",
+      "contents": {
+        "Input": {
+          "img": "results.png"
+        }
+      }
+    }
+  ],
+  "archive": {
+    "enable_reconstruct": true,
+    "files": {
+      "input_0.png": "Input",
+      "results.png": "Reconstruction"
+    },
+    "params": ["input_0.csv", "L", "D", "W", "i_s"],
+    "info": {
+      "run_time": "run time"
+    }
+  },
+  "run": "python $bin/main.py --input input_0.csv --L $L --D $D --W $W --i_s $i_s"
 }
