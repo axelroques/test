@@ -1,0 +1,7 @@
+csc @ file:///percdl/optimization/csc-l0
+jaxlib==0.4.23
+jaxopt==0.8.3
+joblib==1.3.2
+matplotlib==3.8.2
+numpy==1.26.3
+pandas==2.2.0
