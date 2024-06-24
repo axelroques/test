@@ -1,4 +1,4 @@
-csc @ file://./percdl/optimization/csc_l0
+csc @ ./percdl/optimization/csc_l0
 jaxlib==0.4.23
 jaxopt==0.8.3
 joblib==1.3.2
