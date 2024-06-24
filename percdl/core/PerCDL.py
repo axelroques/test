@@ -260,5 +260,5 @@ class PerCDL:
 
         plt.tight_layout()
         plt.show()
-        plt.savefig(f'results.png', pad_inches=0, dpi=150)
+        plt.savefig(f'results.png', pad_inches=0, dpi=300)
         plt.close()
